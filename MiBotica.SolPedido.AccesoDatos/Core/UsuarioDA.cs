@@ -50,9 +50,9 @@ namespace MiBotica.SolPedido.AccesoDatos.Core
             reader.GetSchemaTable().DefaultView.RowFilter = "ColumnName='Clave'";
             if (reader.GetSchemaTable().DefaultView.Count.Equals(1))
             {
-                if (!Convert.IsDBNull(reader["Clave"])) ;
-// usuario.Clave = reader["Clave"];
-}
+                if (!Convert.IsDBNull(reader["Clave"]))
+                    usuario.Clave = (byte[])reader["Clave"];
+            }
             reader.GetSchemaTable().DefaultView.RowFilter =
             "ColumnName='CodUsuario'";
             if (reader.GetSchemaTable().DefaultView.Count.Equals(1))
