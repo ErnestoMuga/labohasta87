@@ -65,9 +65,9 @@
                     <td>
                         @*@Html.DisplayFor(modelItem => item.ClaveTexto)*@
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.IdUsuario }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.IdUsuario })
+                    <td style="text-align: right; white-space: nowrap; padding-right: 15px;">
+                        <a href="@Url.Action("Edit", new { id = item.IdUsuario })" class="btn btn-primary btn-sm"style="margin-right: 5px;">Edit</a>
+                        <a href="@Url.Action("Delete", new { id = item.IdUsuario })" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             }
