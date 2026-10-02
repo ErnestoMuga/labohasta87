@@ -14,5 +14,10 @@ namespace MiBotica.SolPedido.Entidades.Core
         public string RutaImagen { get; set; }
         public int NroOrden { get; set; }
         public int IdOpcionRef { get; set; }
+
+        // Propiedades adicionales, no vienen de la BD
+        public string Area { get; set; }
+        public string Controladora { get; set; }
+        public string Accion { get; set; }
     }
 }

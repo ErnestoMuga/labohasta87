@@ -37,6 +37,9 @@
       <HintPath>..\packages\System.Configuration.ConfigurationManager.10.0.12\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\ProyectoDSI.NET framework\SolPedidos\MiBotica.SolPedidos.Utiles\Binarios\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Core\OpcionDA.cs" />
     <Compile Include="Core\UsuarioDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,6 +12,32 @@ namespace MiBotica.SolPedido.AccesoDatos.Core
 {
     public class UsuarioDA
     {
+        public Usuario BuscarUsuarioPorId(int id)
+        {
+            Usuario SegSSOMUsuario = null;
+            using (SqlConnection conexion = new
+           SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["cnnSql"]].ConnectionString))
+            {
+
+                using (SqlCommand comando = new
+                SqlCommand("paUsuario_BuscaPorId", conexion))
+                {
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@IdUsuario", id);
+                    conexion.Open();
+                    SqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        SegSSOMUsuario = LlenarEntidad(reader);
+
+                    }
+
+                    conexion.Close();
+                }
+            }
+            return SegSSOMUsuario;
+        }
+
         public List<Usuario> ListaUsuarios()
         {
             List<Usuario> listaEntidad = new List<Usuario>();
@@ -175,5 +201,30 @@ namespace MiBotica.SolPedido.AccesoDatos.Core
             }
         }
 
+        public Usuario BuscarUsuario(Usuario usuario)
+        {
+            Usuario SegSSOMUsuario = null;
+            using (SqlConnection conexion = new
+           SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["cnnSql"]].ConnectionString))
+            {
+
+                using (SqlCommand comando = new
+                SqlCommand("paUsuario_BuscaCodUserClave", conexion))
+                {
+                    comando.CommandType = System.Data.CommandType.StoredProcedure; comando.Parameters.AddWithValue("@Clave", usuario.Clave);
+                    comando.Parameters.AddWithValue("@CodUsuario",usuario.CodUsuario);
+                    conexion.Open();
+                    SqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        SegSSOMUsuario = LlenarEntidad(reader);
+
+                    }
+
+                    conexion.Close();
+                }
+            }
+            return SegSSOMUsuario;
+        }
     }
 }

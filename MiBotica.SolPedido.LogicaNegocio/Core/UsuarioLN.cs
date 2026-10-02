@@ -11,6 +11,19 @@ namespace MiBotica.SolPedido.LogicaNegocio.Core
 {
     public class UsuarioLN : BaseLN
     {
+        public Usuario BuscarUsuarioPorId(int id)
+        {
+            try
+            {
+                return new UsuarioDA().BuscarUsuarioPorId(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                throw;
+            }
+        }
+
         public void InsertarUsuario(Usuario usuario)
         {
             try
@@ -60,7 +73,17 @@ namespace MiBotica.SolPedido.LogicaNegocio.Core
             }
         }
 
-
-
+        public Usuario BuscarUsuario(Usuario Usuario)
+        {
+            try
+            {
+                return new UsuarioDA().BuscarUsuario(Usuario);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                throw;
+            }
+        }
     }
 }

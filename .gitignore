@@ -98,6 +98,10 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+# Logs de la aplicación (pero mantener la carpeta)
+Logs/*.log
+!Logs/.gitkeep
+
 # Chutzpah Test files
 _Chutzpah*
 
@@ -361,3 +365,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+

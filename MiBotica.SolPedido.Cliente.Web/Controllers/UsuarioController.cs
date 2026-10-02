@@ -1,4 +1,5 @@
-﻿using MiBotica.SolPedido.Entidades.Core;
+﻿using MiBotica.SolPedido.Entidades.Base;
+using MiBotica.SolPedido.Entidades.Core;
 using MiBotica.SolPedido.LogicaNegocio.Core;
 using MiBotica.SolPedido.Utiles.Helpers;
 using Microsoft.Ajax.Utilities;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace MiBotica.SolPedido.Cliente.Web.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : BaseLN
     {
         // GET: Usuario
         public ActionResult Index()
@@ -46,7 +47,7 @@ namespace MiBotica.SolPedido.Cliente.Web.Controllers
                 usuario.Clave = EncriptacionHelper.EncriptarByte(usuario.ClaveTexto);
 
                 new UsuarioLN().InsertarUsuario(usuario);
-
+                TempData["Mensaje"] = "Usuario creado correctamente.";
                 return RedirectToAction("Index");
             }
             catch
@@ -85,6 +86,7 @@ namespace MiBotica.SolPedido.Cliente.Web.Controllers
                     new UsuarioLN().ModificarUsuario(usuario, false);
                 }
 
+                TempData["Mensaje"] = "Cambios guardados correctamente.";
                 return RedirectToAction("Index");
             }
             catch
@@ -98,9 +100,12 @@ namespace MiBotica.SolPedido.Cliente.Web.Controllers
         {
             try
             {
-                new UsuarioLN().EliminarUsuario(id);
-
-                return RedirectToAction("Index");
+                Usuario usuario = new UsuarioLN().BuscarUsuarioPorId(id);
+                if (usuario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(usuario);
             }
             catch
             {
@@ -109,19 +114,13 @@ namespace MiBotica.SolPedido.Cliente.Web.Controllers
         }
 
         // POST: Usuario/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmacion(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            new UsuarioLN().EliminarUsuario(id);
+            TempData["Mensaje"] = "El registro se eliminó correctamente.";
+            return RedirectToAction("Index");
         }
     }
 }
