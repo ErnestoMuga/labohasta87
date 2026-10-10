@@ -26,5 +26,14 @@ namespace MiBotica.SolPedido.Cliente.Web.Controllers
 
             return View();
         }
+        public ActionResult Error500()
+        {
+            return View();
+        }
+
+        public ActionResult PaginaNoEncontrada()
+        {
+            return View();
+        }
     }
 }

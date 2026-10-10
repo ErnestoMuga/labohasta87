@@ -50,7 +50,7 @@ namespace MiBotica.SolPedido.Cliente.Web.Controllers
                         Log.Info("Llego las opciones. " +
                        VariablesWeb.gOpciones.Count().ToString());
                         VariablesWeb.gUsuario = res;
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Usuario");
                     }
                     else
                     {
